@@ -1,0 +1,23 @@
+{
+  "name": "offline-shooter",
+  "version": "0.0.1",
+  "description": "Top down shooter for js13kGames",
+  "authors": "Nicola Pasquali, Veronika Milic",
+  "homepage": "https://github.com/NicolaPasquali/ofnfline-shooter#readme",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicolaPasquali/offline-shooter.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicolaPasquali/offline-shooter/issues"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.5.0"
+  }
+}
