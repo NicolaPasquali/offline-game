@@ -1,39 +1,16 @@
-const canvas = document.getElementById('gameCanvas');
-let player;
+import '../lib/ga';
+import OfflinePlayer from "./models/OfflinePlayer";
 
-function manageControls(key) {
-    console.log('Pressed key:', key);
-    player.x += 1;
-    console.log('Player:', player);
-}
+const player = new OfflinePlayer(20, 20);
+console.log('Player\'s position:', player.x, player.y);
 
-document.addEventListener('keydown', ($event) => {
-    const keyName = $event.key;
-    manageControls(keyName);
-})
+const g = ga(
+    512, 512, setup
+);
 
-function fillBackground(ctx) {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
+//Start the Ga engine.
+g.start();
 
-function drawPlayer(ctx, player) {
-    ctx.fillStyle = 'hotpink';
-    ctx.fillRect(player.x, player.y, 50, 50);
-}
-
-class Player {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
-if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-
-    player = new Player(20, 20);
-
-    fillBackground(ctx);
-    drawPlayer(ctx, player);
+function setup() {
+    g.backgroundColor = 'hotpink';
 }
