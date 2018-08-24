@@ -1,16 +1,39 @@
 import '../lib/ga';
-import OfflinePlayer from "./models/OfflinePlayer";
+import Player from './models/Player';
 
-const player = new OfflinePlayer(20, 20);
-console.log('Player\'s position:', player.x, player.y);
+const SCREEN_WIDTH = 1152;
+const SCREEN_HEIGHT = 648;
 
-const g = ga(
-    512, 512, setup
-);
+let gameScene;
+let player = new Player(20, 20);
 
-//Start the Ga engine.
+const g = ga(SCREEN_WIDTH, SCREEN_HEIGHT, setup);
+
 g.start();
 
 function setup() {
-    g.backgroundColor = 'hotpink';
+    g.backgroundColor = 'black';
+
+    console.log(createSpriteFromEntity(g, player));
+    gameScene = g.group();
+    // g.state = play;
+}
+
+function createSpriteFromEntity(g, entity) {
+    console.log(entity);
+    switch (entity.shape) {
+        case 'rectangle':
+            return g.rectangle(
+                entity.width,
+                entity.height,
+                entity.fillColor,
+                entity.strokeColor,
+                1,
+                entity.x,
+                entity.y
+            )
+    }
+}
+
+function play() {
 }
