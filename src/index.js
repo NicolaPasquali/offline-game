@@ -1,39 +1,35 @@
-import '../lib/ga';
+import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import Player from './models/Player';
 
 const SCREEN_WIDTH = 1152;
 const SCREEN_HEIGHT = 648;
 
-let gameScene;
 let player = new Player(20, 20);
 
-const g = ga(SCREEN_WIDTH, SCREEN_HEIGHT, setup);
+kontra.init('gameScreen');
 
-g.start();
+let sprite = kontra.sprite({
+    x: 100,        // starting x,y position of the sprite
+    y: 80,
+    color: 'red',  // fill color of the sprite rectangle
+    width: 20,     // width and height of the sprite rectangle
+    height: 40,
+    dx: 2          // move the sprite 2px to the right every frame
+});
 
-function setup() {
-    g.backgroundColor = 'black';
+let loop = kontra.gameLoop({  // create the main game loop
+    update: function() {        // update the game state
+        sprite.update();
 
-    console.log(createSpriteFromEntity(g, player));
-    gameScene = g.group();
-    // g.state = play;
-}
-
-function createSpriteFromEntity(g, entity) {
-    console.log(entity);
-    switch (entity.shape) {
-        case 'rectangle':
-            return g.rectangle(
-                entity.width,
-                entity.height,
-                entity.fillColor,
-                entity.strokeColor,
-                1,
-                entity.x,
-                entity.y
-            )
+        // wrap the sprites position when it reaches
+        // the edge of the screen
+        if (sprite.x > kontra.canvas.width) {
+            sprite.x = -sprite.width;
+        }
+    },
+    render: function() {        // render the game state
+        sprite.render();
     }
-}
+});
 
-function play() {
-}
+loop.start();

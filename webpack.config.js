@@ -16,7 +16,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Offline Shooter',
-            filename: path.join(__dirname, 'dist', 'index.html')
+            filename: path.join(__dirname, 'dist', 'index.html'),
+            template: 'src/index.html',
+            minify: false,
         })
     ]
 };
