@@ -14,7 +14,10 @@ export function createSpriteFromEntity(kontra, entity) {
 export function createGuards(kontra, numberOfGuards) {
     let guards = [];
     for (let i = 0; i < numberOfGuards; i++) {
-        guards.push(createSpriteFromEntity(kontra, new BasicGuard(10, 35 * i)));
+        let guard = new BasicGuard(10, 35 * i);
+        let sprite = createSpriteFromEntity(kontra, guard);
+        guard.sprite = createSpriteFromEntity(kontra, guard);
+        guards.push(guard);
     }
     return guards;
 }

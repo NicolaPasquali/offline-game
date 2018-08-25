@@ -13,21 +13,22 @@ function gameLoopUpdate() {
     setPlayerControls();
     setPlayerScreenBoundaries();
     player.update();
+    guards.forEach((guard) => guard.patrol(kontra.canvas.width, 'horizontal'));
 }
 
 function setPlayerControls() {
     if (kontra.keys.pressed('left') || kontra.keys.pressed('a')) {
-        player.dx = -Math.abs(playerObj.speed);
+        player.dx = -playerObj.speed;
     } else if (kontra.keys.pressed('right') || kontra.keys.pressed('d')) {
-        player.dx = Math.abs(playerObj.speed);
+        player.dx = playerObj.speed;
     } else {
         player.dx = 0;
     }
 
     if (kontra.keys.pressed('up') || kontra.keys.pressed('w')) {
-        player.dy = -Math.abs(playerObj.speed);
+        player.dy = -playerObj.speed;
     } else if (kontra.keys.pressed('down') || kontra.keys.pressed('s')) {
-        player.dy = Math.abs(playerObj.speed);
+        player.dy = playerObj.speed;
     } else {
         player.dy = 0;
     }
@@ -54,12 +55,12 @@ function setPlayerScreenBoundaries() {
 function gameLoopRender() {
     checkCollisions();
     player.render();
-    guards.forEach((guard) => guard.render());
+    guards.forEach((guard) => guard.sprite.render());
 }
 
 function checkCollisions() {
     guards.forEach((guard) => {
-        if (guard.collidesWith(player)) {
+        if (guard.sprite.collidesWith(player)) {
             guards.delete(guard);
         }
     })
