@@ -1,4 +1,4 @@
-import BasicGuard from "./guards/BasicGuard";
+import BasicGuard from "./models/guards/BasicGuard";
 
 export function createSpriteFromEntity(kontra, entity) {
     return kontra.sprite({

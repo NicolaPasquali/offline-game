@@ -1,4 +1,4 @@
-import Entity from "../models/Entity";
+import Entity from "../Entity";
 
 export default class BasicGuard extends Entity {
     constructor(x, y) {
