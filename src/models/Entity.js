@@ -4,7 +4,7 @@ export default class Entity {
         this.y = y;
         this.width = 30;
         this.height = 30;
-        this.fillColor = 'white';
-        this.strokeColor = 'black';
+        this.color = 'white';
+        this.speed = 5
     }
 }

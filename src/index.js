@@ -1,35 +1,55 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import Player from './models/Player';
-
-const SCREEN_WIDTH = 1152;
-const SCREEN_HEIGHT = 648;
+import {createSpriteFromEntity} from './utilities';
 
 let player = new Player(20, 20);
 
 kontra.init('gameScreen');
 
-let sprite = kontra.sprite({
-    x: 100,        // starting x,y position of the sprite
-    y: 80,
-    color: 'red',  // fill color of the sprite rectangle
-    width: 20,     // width and height of the sprite rectangle
-    height: 40,
-    dx: 2          // move the sprite 2px to the right every frame
-});
+let playerSprite = createSpriteFromEntity(kontra, player);
 
-let loop = kontra.gameLoop({  // create the main game loop
-    update: function() {        // update the game state
-        sprite.update();
+function gameLoopUpdate() {
+    setPlayerControls();
+    setPlayerScreenBoundaries();
+    playerSprite.update();
+}
 
-        // wrap the sprites position when it reaches
-        // the edge of the screen
-        if (sprite.x > kontra.canvas.width) {
-            sprite.x = -sprite.width;
-        }
-    },
-    render: function() {        // render the game state
-        sprite.render();
+function setPlayerControls() {
+    if (kontra.keys.pressed('left') || kontra.keys.pressed('a')) {
+        playerSprite.dx = -Math.abs(player.speed);
+    } else if (kontra.keys.pressed('right') || kontra.keys.pressed('d')) {
+        playerSprite.dx = Math.abs(player.speed);
+    } else {
+        playerSprite.dx = 0;
     }
+
+    if (kontra.keys.pressed('up') || kontra.keys.pressed('w')) {
+        playerSprite.dy = -Math.abs(player.speed);
+    } else if (kontra.keys.pressed('down') || kontra.keys.pressed('s')) {
+        playerSprite.dy = Math.abs(player.speed);
+    } else {
+        playerSprite.dy = 0;
+    }
+}
+
+function setPlayerScreenBoundaries() {
+    if (playerSprite.x > kontra.canvas.width) {
+        playerSprite.x = 0;
+    }
+
+    if (playerSprite.x < 0) {
+        playerSprite.x = kontra.canvas.width;
+    }
+}
+
+function gameLoopRender() {
+    playerSprite.render();
+}
+
+const loop = kontra.gameLoop({
+    fps: 60,
+    update: gameLoopUpdate,
+    render: gameLoopRender
 });
 
 loop.start();
