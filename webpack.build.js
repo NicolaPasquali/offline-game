@@ -19,7 +19,7 @@ module.exports = {
             title: 'Offline Shooter',
             filename: path.join(__dirname, 'dist', 'index.html'),
             template: 'src/index.html',
-            minify: true,
+            minify: true
         })
     ]
 };

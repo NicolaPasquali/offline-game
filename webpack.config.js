@@ -17,8 +17,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Offline Shooter',
             filename: path.join(__dirname, 'dist', 'index.html'),
-            template: 'src/index.html',
-            minify: false,
+            template: path.join(__dirname, 'src', 'index.html'),
+            minify: false
         })
     ]
 };
