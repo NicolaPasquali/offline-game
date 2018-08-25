@@ -2,10 +2,16 @@ import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import Player from './models/Player';
 import {createGuards, createSpriteFromEntity} from './utilities';
 
-let playerObj = new Player(20, 20);
-
 kontra.init('gameScreen');
 
+const playerObj = new Player(20, 20);
+const background = kontra.sprite({
+    x: 0,
+    y: 0,
+    color: 'black',
+    width: kontra.canvas.width,
+    height: kontra.canvas.height
+});
 let player = createSpriteFromEntity(kontra, playerObj);
 let guards = new Set(createGuards(kontra, 10));
 
@@ -53,6 +59,7 @@ function setPlayerScreenBoundaries() {
 }
 
 function gameLoopRender() {
+    background.render();
     checkCollisions();
     player.render();
     guards.forEach((guard) => guard.sprite.render());
