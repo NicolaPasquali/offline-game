@@ -1,49 +1,68 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import Player from './models/Player';
-import {createSpriteFromEntity} from './utilities';
+import {createGuards, createSpriteFromEntity} from './utilities';
 
-let player = new Player(20, 20);
+let playerObj = new Player(20, 20);
 
 kontra.init('gameScreen');
 
-let playerSprite = createSpriteFromEntity(kontra, player);
+let player = createSpriteFromEntity(kontra, playerObj);
+let guards = new Set(createGuards(kontra, 10));
 
 function gameLoopUpdate() {
     setPlayerControls();
     setPlayerScreenBoundaries();
-    playerSprite.update();
+    player.update();
 }
 
 function setPlayerControls() {
     if (kontra.keys.pressed('left') || kontra.keys.pressed('a')) {
-        playerSprite.dx = -Math.abs(player.speed);
+        player.dx = -Math.abs(playerObj.speed);
     } else if (kontra.keys.pressed('right') || kontra.keys.pressed('d')) {
-        playerSprite.dx = Math.abs(player.speed);
+        player.dx = Math.abs(playerObj.speed);
     } else {
-        playerSprite.dx = 0;
+        player.dx = 0;
     }
 
     if (kontra.keys.pressed('up') || kontra.keys.pressed('w')) {
-        playerSprite.dy = -Math.abs(player.speed);
+        player.dy = -Math.abs(playerObj.speed);
     } else if (kontra.keys.pressed('down') || kontra.keys.pressed('s')) {
-        playerSprite.dy = Math.abs(player.speed);
+        player.dy = Math.abs(playerObj.speed);
     } else {
-        playerSprite.dy = 0;
+        player.dy = 0;
     }
 }
 
 function setPlayerScreenBoundaries() {
-    if (playerSprite.x > kontra.canvas.width) {
-        playerSprite.x = 0;
+    if (player.x > kontra.canvas.width) {
+        player.x = 0;
     }
 
-    if (playerSprite.x < 0) {
-        playerSprite.x = kontra.canvas.width;
+    if (player.x < 0) {
+        player.x = kontra.canvas.width;
+    }
+
+    if (player.y > kontra.canvas.height) {
+        player.y = 0;
+    }
+
+    if (player.y < 0) {
+        player.y = kontra.canvas.height;
     }
 }
 
 function gameLoopRender() {
-    playerSprite.render();
+    checkCollisions();
+    player.render();
+    guards.forEach((guard) => guard.render());
+}
+
+function checkCollisions() {
+    guards.forEach((guard) => {
+        if (guard.collidesWith(player)) {
+            guards.delete(guard);
+        }
+    })
 }
 
 const loop = kontra.gameLoop({
