@@ -1,6 +1,6 @@
 {
   "name": "offline-shooter",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Top down shooter for js13kGames",
   "authors": ["Nicola Pasquali", "Veronika Milic"],
   "homepage": "https://github.com/NicolaPasquali/offline-game#readme",
