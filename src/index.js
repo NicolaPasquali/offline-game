@@ -4,7 +4,7 @@ import {createGuards, createSpriteFromEntity} from './utilities';
 
 kontra.init('gameScreen');
 
-const playerObj = new Player(20, 20);
+const playerObj = new Player(520, 20);
 const background = kontra.sprite({
     x: 0,
     y: 0,
@@ -13,13 +13,13 @@ const background = kontra.sprite({
     height: kontra.canvas.height
 });
 let player = createSpriteFromEntity(kontra, playerObj);
-let guards = new Set(createGuards(kontra, 10));
+let guards = new Set(createGuards(kontra, 2));
 
 function gameLoopUpdate() {
     setPlayerControls();
     setPlayerScreenBoundaries();
     player.update();
-    guards.forEach((guard) => guard.patrol(kontra.canvas.width, 'horizontal'));
+    guards.forEach((guard) => guard.patrol());
 }
 
 function setPlayerControls() {
@@ -41,20 +41,17 @@ function setPlayerControls() {
 }
 
 function setPlayerScreenBoundaries() {
-    if (player.x > kontra.canvas.width) {
+    if (player.x + player.width > kontra.canvas.width) {
+        player.x = kontra.canvas.width - player.width;
+    }
+    if (player.x < 0) {
         player.x = 0;
     }
-
-    if (player.x < 0) {
-        player.x = kontra.canvas.width;
+    if (player.y + player.height > kontra.canvas.height) {
+        player.y = kontra.canvas.height - player.height;
     }
-
-    if (player.y > kontra.canvas.height) {
-        player.y = 0;
-    }
-
     if (player.y < 0) {
-        player.y = kontra.canvas.height;
+        player.y = 0;
     }
 }
 
@@ -68,9 +65,9 @@ function gameLoopRender() {
 function checkCollisions() {
     guards.forEach((guard) => {
         if (guard.sprite.collidesWith(player)) {
-            guards.delete(guard);
+            // player = undefined;
         }
-    })
+    });
 }
 
 const loop = kontra.gameLoop({
