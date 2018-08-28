@@ -19,11 +19,7 @@ let guards = new Set(createGuards(kontra, 2));
 
 function init(){
     window.addEventListener('load', function(e) {
-        if (navigator.onLine) {
-            connected = true;
-        } else {
-            connected = false;
-        }
+        connected = navigator.onLine;
     }, false);
     console.log('init');
 }
