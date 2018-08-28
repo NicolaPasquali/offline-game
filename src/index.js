@@ -17,8 +17,8 @@ const background = kontra.sprite({
 let player = createSpriteFromEntity(kontra, playerObj);
 let guards = new Set(createGuards(kontra, 2));
 
-function init(){
-    window.addEventListener('load', function(e) {
+function init() {
+    window.addEventListener('load', function (e) {
         connected = navigator.onLine;
     }, false);
     console.log('init');
@@ -68,13 +68,11 @@ function gameLoopRender() {
     background.render();
     checkCollisions();
     player.render();
-    if(connected){
-        console.log('connected');
+    if (connected) {
         guards.forEach((guard) => guard.sprite.render());
     } else {
         console.log('NOT connected');
     }
-    
 }
 
 function checkCollisions() {
@@ -85,17 +83,15 @@ function checkCollisions() {
     });
 }
 
-function checkOnlineStatus(){
-    window.addEventListener('online', function(e) {
-          connected = true;
-      // Get updates from server.
+function checkOnlineStatus() {
+    window.addEventListener('online', function (e) {
+        connected = true;
     }, false);
 
-    window.addEventListener('offline', function(e) {
-          connected = false;
+    window.addEventListener('offline', function (e) {
+        connected = false;
     }, false);
 }
-
 
 const loop = kontra.gameLoop({
     fps: 60,
