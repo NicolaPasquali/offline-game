@@ -5,5 +5,6 @@ export default class BasicEnemy extends Entity {
         super(x, y);
         this.color = '#374F6B';
         this.speed = 4;
+        this.maxHealth = 50;
     }
 }

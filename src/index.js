@@ -5,8 +5,8 @@ import {createEnemies, createSpriteFromEntity} from './utilities';
 kontra.init('gameScreen');
 
 let connected = checkOnlineStatus();
-
-const playerObj = new Player(520, 20);
+const player = new Player(520, 20);
+player.sprite = createSpriteFromEntity(kontra, player);
 const background = kontra.sprite({
     x: 0,
     y: 0,
@@ -14,7 +14,6 @@ const background = kontra.sprite({
     width: kontra.canvas.width,
     height: kontra.canvas.height
 });
-let player = createSpriteFromEntity(kontra, playerObj);
 let enemies = new Set(createEnemies(kontra, 2));
 
 function init() {
@@ -27,52 +26,46 @@ function init() {
 function gameLoopUpdate() {
     setPlayerControls();
     setPlayerScreenBoundaries();
-    player.update();
-
-    kontra.pointer.onDown(function(event, object) {
-        console.log(event, object);
-    });
-
     // enemies.forEach((enemy) => enemy.patrol());
 }
 
 function setPlayerControls() {
     if (kontra.keys.pressed('left') || kontra.keys.pressed('a')) {
-        player.dx = -playerObj.speed;
+        player.sprite.dx = -player.speed;
     } else if (kontra.keys.pressed('right') || kontra.keys.pressed('d')) {
-        player.dx = playerObj.speed;
+        player.sprite.dx = player.speed;
     } else {
-        player.dx = 0;
+        player.sprite.dx = 0;
     }
 
     if (kontra.keys.pressed('up') || kontra.keys.pressed('w')) {
-        player.dy = -playerObj.speed;
+        player.sprite.dy = -player.speed;
     } else if (kontra.keys.pressed('down') || kontra.keys.pressed('s')) {
-        player.dy = playerObj.speed;
+        player.sprite.dy = player.speed;
     } else {
-        player.dy = 0;
+        player.sprite.dy = 0;
     }
 }
 
 function setPlayerScreenBoundaries() {
-    if (player.x + player.width > kontra.canvas.width) {
-        player.x = kontra.canvas.width - player.width;
+    if (player.sprite.x + player.sprite.width > kontra.canvas.width) {
+        player.sprite.x = kontra.canvas.width - player.sprite.width;
     }
-    if (player.x < 0) {
-        player.x = 0;
+    if (player.sprite.x < 0) {
+        player.sprite.x = 0;
     }
-    if (player.y + player.height > kontra.canvas.height) {
-        player.y = kontra.canvas.height - player.height;
+    if (player.sprite.y + player.sprite.height > kontra.canvas.height) {
+        player.sprite.y = kontra.canvas.height - player.sprite.height;
     }
-    if (player.y < 0) {
-        player.y = 0;
+    if (player.sprite.y < 0) {
+        player.sprite.y = 0;
     }
 }
 
 function gameLoopRender() {
     background.render();
     checkCollisions();
-    player.render();
+    player.sprite.render();
     if (connected) {
         enemies.forEach((guard) => guard.sprite.render());
     } else {
@@ -82,7 +75,7 @@ function gameLoopRender() {
 
 function checkCollisions() {
     enemies.forEach((guard) => {
-        if (guard.sprite.collidesWith(player)) {
+        if (guard.sprite.collidesWith(player.sprite)) {
             // player = undefined;
         }
     });
