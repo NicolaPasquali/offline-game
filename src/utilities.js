@@ -21,7 +21,7 @@ export function createGuards(kontra, numberOfGuards) {
             {x: 450, y: 200},
             {x: 450, y: 500},
             {x: 550, y: 550}
-        ]);
+            ]);
         let sprite = createSpriteFromEntity(kontra, guard);
         guard.sprite = createSpriteFromEntity(kontra, guard);
         guards.push(guard);
