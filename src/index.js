@@ -1,6 +1,6 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import Player from './models/Player';
-import {createGuards, createSpriteFromEntity} from './utilities';
+import {createEnemies, createSpriteFromEntity} from './utilities';
 
 kontra.init('gameScreen');
 
@@ -15,7 +15,7 @@ const background = kontra.sprite({
     height: kontra.canvas.height
 });
 let player = createSpriteFromEntity(kontra, playerObj);
-let guards = new Set(createGuards(kontra, 2));
+let enemies = new Set(createEnemies(kontra, 2));
 
 function init() {
     window.addEventListener('load', function (e) {
@@ -28,7 +28,12 @@ function gameLoopUpdate() {
     setPlayerControls();
     setPlayerScreenBoundaries();
     player.update();
-    guards.forEach((guard) => guard.patrol());
+
+    kontra.pointer.onDown(function(event, object) {
+        console.log(event, object);
+    });
+
+    // enemies.forEach((enemy) => enemy.patrol());
 }
 
 function setPlayerControls() {
@@ -69,14 +74,14 @@ function gameLoopRender() {
     checkCollisions();
     player.render();
     if (connected) {
-        guards.forEach((guard) => guard.sprite.render());
+        enemies.forEach((guard) => guard.sprite.render());
     } else {
         console.log('NOT connected');
     }
 }
 
 function checkCollisions() {
-    guards.forEach((guard) => {
+    enemies.forEach((guard) => {
         if (guard.sprite.collidesWith(player)) {
             // player = undefined;
         }
