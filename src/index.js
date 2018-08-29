@@ -8,7 +8,10 @@ let background;
 
 function initialize() {
     setConnectionStatusListeners();
-    background = createBackground(kontra, 'black');
+    // Sarebbe figo avere un ufficio come sfondo
+    // Al limite va bene anche colorare di nero la parte alta
+    // Va convertita in jpg e ridotta il più possibile come dimensione!
+    background = createBackground(kontra, './assets/background.png');
     kontra.gameLoop({
         fps: 60,
         update: gameLoopUpdate,

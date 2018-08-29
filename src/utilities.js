@@ -1,4 +1,4 @@
-import BasicEnemy from "./models/enemies/BasicEnemy";
+import BasicEnemy from './models/enemies/BasicEnemy';
 
 export function createSpriteFromEntity(kontra, entity) {
     return kontra.sprite({
@@ -11,9 +11,9 @@ export function createSpriteFromEntity(kontra, entity) {
     });
 }
 
-export function createEnemies(kontra, numberOfGuards) {
+export function createEnemies(kontra, numberOfEnemies) {
     let enemies = [];
-    for (let i = 0; i < numberOfGuards; i++) {
+    for (let i = 0; i < numberOfEnemies; i++) {
         let enemy = new BasicEnemy(10, 200 * i);
         enemy.sprite = createSpriteFromEntity(kontra, enemy);
         enemies.push(enemy);
@@ -21,11 +21,14 @@ export function createEnemies(kontra, numberOfGuards) {
     return enemies;
 }
 
-export function createBackground(kontra, color) {
+export function createBackground(kontra, imagePath) {
+    let image = new Image();
+    image.src = imagePath;
+    console.log(image);
     return kontra.sprite({
         x: 0,
         y: 0,
-        color: color,
+        image: image,
         width: kontra.canvas.width,
         height: kontra.canvas.height
     });
