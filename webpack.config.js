@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const glob = require('glob');
 
 module.exports = {
@@ -24,10 +25,11 @@ module.exports = {
         }),
         new ImageminPlugin({
             externalImages: {
-                context: 'src/assets', // Important! This tells the plugin where to "base" the paths at
+                context: 'src/assets',
                 sources: glob.sync('src/assets/*.png'),
                 destination: 'dist/assets'
             }
-        })
+        }),
+        // new BundleAnalyzerPlugin() // Utile per vedere cosa si può fare per snellire il bundle
     ]
 };
