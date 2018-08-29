@@ -1,12 +1,14 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import {createBackground} from './utilities';
-import Menu from "./models/Menu";
+import MenuDisplay from "./models/menu/MenuDisplay";
+import MenuFactory from "./models/menu/MenuFactory";
 
 kontra.init('gameScreen');
 
 let connected;
 let background;
-let menu;
+let menuDisplay;
+const menuFactory = new MenuFactory(kontra);
 
 function initialize() {
     setConnectionStatusListeners();
@@ -14,7 +16,7 @@ function initialize() {
     // Al limite va bene anche colorare di nero la parte alta
     // Va convertita in jpg e ridotta il più possibile come dimensione!
     background = createBackground(kontra, './assets/background.png');
-    menu = new Menu(kontra);
+    menuDisplay = new MenuDisplay(kontra, menuFactory.mainMenu());
     kontra.gameLoop({
         fps: 60,
         update: gameLoopUpdate,
@@ -33,7 +35,7 @@ function gameLoopUpdate() {
 
 function gameLoopRender() {
     background.render();
-    menu.render();
+    menuDisplay.render();
 }
 
 initialize();
