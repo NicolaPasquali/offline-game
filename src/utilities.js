@@ -11,6 +11,17 @@ export function createSpriteFromEntity(kontra, entity) {
     });
 }
 
+export function createSpriteFromText(kontra, text, x, y, color = 'white') {
+    return kontra.sprite({
+        color: color,
+        render: function() {
+            this.context.font = '30px Arial';
+            this.context.fillStyle = this.color;
+            this.context.fillText(text, x, y);
+        }
+    });
+}
+
 export function createEnemies(kontra, numberOfEnemies) {
     let enemies = [];
     for (let i = 0; i < numberOfEnemies; i++) {
@@ -24,7 +35,6 @@ export function createEnemies(kontra, numberOfEnemies) {
 export function createBackground(kontra, imagePath) {
     let image = new Image();
     image.src = imagePath;
-    console.log(image);
     return kontra.sprite({
         x: 0,
         y: 0,
