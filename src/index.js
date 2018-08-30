@@ -1,24 +1,19 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import {createBackground} from './utilities';
-import MenuDisplay from "./models/menu/MenuDisplay";
-import MenuFactory from "./models/menu/MenuFactory";
+import Menu from "./models/menu/Menu";
 
 kontra.init('gameScreen');
 
 let connected;
 let background;
-let menuDisplay;
-const menuFactory = new MenuFactory(kontra);
+let menu;
 
 function initialize() {
     setConnectionStatusListeners();
-    // Sarebbe figo avere un ufficio come sfondo
-    // Al limite va bene anche colorare di nero la parte alta
-    // Va convertita in jpg e ridotta il più possibile come dimensione!
-    background = createBackground(kontra, './assets/background.png');
-    menuDisplay = new MenuDisplay(kontra, menuFactory.mainMenu());
+    background = createBackground(kontra, 'black');
+    menu = new Menu(kontra);
     kontra.gameLoop({
-        fps: 60,
+        fps: 5,
         update: gameLoopUpdate,
         render: gameLoopRender
     }).start();
@@ -31,11 +26,12 @@ function setConnectionStatusListeners() {
 }
 
 function gameLoopUpdate() {
+    menu.manageInput();
 }
 
 function gameLoopRender() {
     background.render();
-    menuDisplay.render();
+    menu.render();
 }
 
 initialize();
