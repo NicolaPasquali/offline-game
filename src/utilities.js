@@ -9,13 +9,11 @@ export function createSpriteFromText(kontra, text, x, y, color = 'white') {
     });
 }
 
-export function createBackground(kontra, imagePath) {
-    let image = new Image();
-    image.src = imagePath;
+export function createBackground(kontra, color) {
     return kontra.sprite({
         x: 0,
         y: 0,
-        image: image,
+        color: color,
         width: kontra.canvas.width,
         height: kontra.canvas.height
     });
