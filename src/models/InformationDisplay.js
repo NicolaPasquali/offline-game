@@ -37,7 +37,7 @@ export default class InformationDisplay {
     _renderEnemiesInfo() {
         if (this.enemies.length > 0) {
             this.enemies.forEach((enemy) => {
-                let infoElement = this._enemiesContainer.appendChild(this._getOrCreateEnemyInfoElement(enemy));
+                let infoElement = this._getOrCreateEnemyInfoElement(enemy);
                 infoElement.childNodes[0].innerText = enemy.name;
                 infoElement.childNodes[1].innerText = `HP: ${enemy.hp}/${enemy.maxHp}`;
             });
@@ -52,8 +52,10 @@ export default class InformationDisplay {
 
         infoElement = document.createElement('fieldset');
         infoElement.className = 'enemy';
+        infoElement.id = enemy.id;
         infoElement.appendChild(document.createElement('legend'));
         infoElement.appendChild(document.createElement('div'));
+        this._enemiesContainer.appendChild(infoElement);
 
         return infoElement;
     }

@@ -23,6 +23,9 @@ function initialize() {
     initializeInformationDisplay();
     informationDisplay.render();
 
+    enemies[0].hp = 10;
+    informationDisplay.render();
+
     kontra.gameLoop({
         fps: 5,
         update: gameLoopUpdate,
@@ -38,7 +41,6 @@ function setConnectionStatusListeners() {
 
 function spawnEnemies() {
     enemies = [new BasicEnemy(), new BasicEnemy(), new BasicEnemy()];
-    enemies[0].hp = 10;
 }
 
 function initializeInformationDisplay() {
