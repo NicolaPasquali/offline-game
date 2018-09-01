@@ -3,8 +3,44 @@
     <head>
         <meta charset="UTF-8">
         <title>Offline RPG</title>
+        <link href="./index.css">
     </head>
-    <body>
-        <canvas id="gameScreen" width="900" height="585"></canvas>
+    <body style="background-color: black;">
+        <div class="game-screen">
+            <div class="game-screen__canvas-container">
+                <canvas id="gameScreen" width="900" height="585"></canvas>
+            </div>
+            <div class="game-screen__information-display">
+                <div id="enemiesContainer" class="u-half u-centered-row"></div>
+                <div class="u-half u-centered-row">
+                    <table>
+                        <tr>
+                            <td>HP:</td><td id="playerCurrentHp">250</td><td id="playerMaxHp">/ 250</td>
+                        </tr>
+                        <tr>
+                            <td>Focus:</td><td id="playerFocus">100%</td>
+                        </tr>
+                        <tr>
+                            <td>Stress:</td><td id="playerStress">0%</td>
+                        </tr>
+                        <tr>
+                            <td>Programming:</td><td id="playerProgramming">1</td>
+                        </tr>
+                        <tr>
+                            <td>Problem Solving:</td><td id="playerProblemSolving">1</td>
+                        </tr>
+                        <tr>
+                            <td>Communication:</td><td id="playerCommunication">1</td>
+                        </tr>
+                        <tr>
+                            <td>Team Work:</td><td id="playerTeamWork">1</td>
+                        </tr>
+                        <tr>
+                            <td>XP:</td><td id="playerCurrentXp">0</td><td id="playerXpToNextLevel">/ 500</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,4 +1,4 @@
-import {createSpriteFromText} from "../../utilities";
+import {createSpriteFromText} from '../../utilities';
 
 export default class MenuItem {
     constructor(kontra, text, x, y, callback) {

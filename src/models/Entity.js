@@ -5,17 +5,16 @@ export default class Entity {
         this.width = 30;
         this.height = 30;
         this.color = 'white';
-        this.speed = 5;
-        this.maxHealth = 100;
-        this.currentHealth = this.maxHealth;
+        this.maxHp = 100;
+        this.id = `ENT-${Math.random() * Math.random() + Math.random()}`
     }
 
-    heal(hp) {
-        this.currentHealth = Math.min(this.maxHealth, this.currentHealth + hp);
+    heal(amount) {
+        this.hp = Math.min(this.maxHp, this.hp + amount);
     }
 
-    damage(hp) {
-        this.currentHealth -= hp;
-        return this.currentHealth <= 0;
+    damage(amount) {
+        this.hp -= amount;
+        return this.hp <= 0;
     }
 }

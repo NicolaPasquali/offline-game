@@ -1,0 +1,58 @@
+@font-face {
+    font-family: ManaSpc;
+    src: url(./assets/manaspc.ttf) format('truetype');
+}
+
+$text-color: white;
+$section-background-color: blue;
+$section-border-color: gold;
+
+body {
+    background-color: black;
+    font-family: ManaSpc;
+}
+
+.game-screen {
+    display: flex;
+    flex-direction: row;
+}
+
+.game-screen__canvas-container {
+    display: flex;
+    flex: 70;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.game-screen__information-display {
+    display: flex;
+    flex: 30;
+    flex-direction: column;
+    background-color: $section-background-color;
+    border: 20px solid $section-border-color;
+    color: $text-color
+}
+
+.u-half {
+    display: flex;
+    flex: 50;
+}
+
+.u-centered-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.enemy {
+    color: $text-color;
+    border-color: $text-color;
+}
+
+.enemy:hover {
+    border-color: $section-border-color;
+    legend {
+        color: $section-border-color;
+    }
+}

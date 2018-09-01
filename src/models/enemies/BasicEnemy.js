@@ -4,7 +4,8 @@ export default class BasicEnemy extends Entity {
     constructor(x, y) {
         super(x, y);
         this.color = '#374F6B';
-        this.speed = 4;
-        this.maxHealth = 50;
+        this.name = 'Basic';
+        this.hp = 50;
+        this.maxHp = 50;
     }
 }

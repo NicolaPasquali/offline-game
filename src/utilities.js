@@ -2,7 +2,7 @@ export function createSpriteFromText(kontra, text, x, y, color = 'white') {
     return kontra.sprite({
         color: color,
         render: function () {
-            this.context.font = '30px Arial';
+            this.context.font = '25px Arial';
             this.context.fillStyle = this.color;
             this.context.fillText(text, x, y);
         }

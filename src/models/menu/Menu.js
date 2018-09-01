@@ -1,21 +1,27 @@
-import MenuItem from "./MenuItem";
+import MenuItem from './MenuItem';
 
 export default class Menu {
     constructor(kontra) {
         this.kontra = kontra;
         this._items = [
-            new MenuItem(kontra, 'Write Code', 150, 475, () => {
+            new MenuItem(kontra, 'Write Code', 125, 465, () => {
                 console.log('Writing code!');
             }),
-            new MenuItem(kontra, 'Debug', 570, 475, () => {
+            new MenuItem(kontra, 'Debug', 370, 465, () => {
                 console.log('Debugging!');
             }),
-            new MenuItem(kontra, 'Meditate', 150, 545, () => {
+            new MenuItem(kontra, 'Meditate', 680, 465, () => {
                 console.log('Meditating!');
             }),
-            new MenuItem(kontra, 'Meeting', 570, 545, () => {
+            new MenuItem(kontra, 'Meeting', 125, 545, () => {
                 console.log('In a meeting!');
             }),
+            new MenuItem(kontra, 'Pair Programming', 370, 545, () => {
+                console.log('Doing pair programming!');
+            }),
+            new MenuItem(kontra, 'Procrastinate', 680, 545, () => {
+                console.log('Procrastinating!');
+            })
         ];
         this._borderSprite = this._createMenuBorderSprite();
         this._backgroundSprite = this._createMenuSprite();
@@ -46,8 +52,8 @@ export default class Menu {
 
     _createSelectorSprite() {
         return kontra.sprite({
-            x: 125,
-            y: 460,
+            x: this._items[this._selectedItem].x - 25,
+            y: this._items[this._selectedItem].y - 15,
             color: 'white',
             width: 10,
             height: 10
