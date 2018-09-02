@@ -1,6 +1,5 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import {createBackground} from './utilities';
-import Menu from './models/menu/Menu';
 import InformationDisplay from "./models/InformationDisplay";
 import Player from './models/Player';
 import BasicEnemy from "./models/enemies/BasicEnemy";
@@ -9,7 +8,6 @@ kontra.init('gameScreen');
 
 let connected;
 let background;
-let menu;
 let player;
 let enemies;
 let informationDisplay;
@@ -17,7 +15,6 @@ let informationDisplay;
 function initialize() {
     setConnectionStatusListeners();
     background = createBackground(kontra, 'black');
-    menu = new Menu(kontra);
     player = new Player();
     spawnEnemies();
     initializeInformationDisplay();
@@ -49,12 +46,10 @@ function initializeInformationDisplay() {
 }
 
 function gameLoopUpdate() {
-    menu.manageInput();
 }
 
 function gameLoopRender() {
     background.render();
-    menu.render();
 }
 
 initialize();

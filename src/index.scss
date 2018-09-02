@@ -7,6 +7,13 @@ $text-color: white;
 $section-background-color: blue;
 $section-border-color: gold;
 
+@mixin basic-section() {
+    display: flex;
+    background-color: $section-background-color;
+    border: 20px solid $section-border-color;
+    color: $text-color;
+}
+
 body {
     background-color: black;
     font-family: ManaSpc;
@@ -17,20 +24,22 @@ body {
     flex-direction: row;
 }
 
+.game-screen__events_log {
+    @include basic-section();
+    flex: 30;
+}
+
 .game-screen__canvas-container {
     display: flex;
-    flex: 70;
-    flex-direction: row;
+    flex: 40;
+    flex-direction: column;
     justify-content: flex-end;
 }
 
 .game-screen__information-display {
-    display: flex;
+    @include basic-section();
     flex: 30;
     flex-direction: column;
-    background-color: $section-background-color;
-    border: 20px solid $section-border-color;
-    color: $text-color
 }
 
 .u-half {
@@ -54,5 +63,28 @@ body {
     border-color: $section-border-color;
     legend {
         color: $section-border-color;
+    }
+}
+
+#actionsMenu {
+    @include basic-section();
+    border-right: 0;
+    border-left: 0;
+    padding: 2rem 5rem;
+}
+
+.action-button {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    text-align: center;
+    padding: .7rem;
+    margin: .5rem;
+    border: 1px solid $text-color;
+
+    &:hover {
+        color: $section-background-color;
+        border-color: $section-background-color;
+        background-color: $text-color;
     }
 }
