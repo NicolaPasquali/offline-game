@@ -1,5 +1,8 @@
-export default class Player {
+import {Entity} from './Entity';
+
+export default class Player extends Entity{
     constructor() {
+        super();
         this.hp = 50;
         this.maxHp = 50;
         this.xp = 0;
@@ -20,15 +23,6 @@ export default class Player {
         this.xpToNextLevel += 100;
         this.maxHp += 5;
         // TODO Increment statistics
-    }
-
-    damage(amount) {
-        this.hp -= amount;
-        return this.hp <= 0;
-    }
-
-    heal(amount) {
-        this.hp = Math.min(this.maxHp, this.hp + amount);
     }
 
     addStress(amount) {

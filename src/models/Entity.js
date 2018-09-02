@@ -1,10 +1,6 @@
-export default class Entity {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.width = 30;
-        this.height = 30;
-        this.color = 'white';
+export class Entity {
+    constructor() {
+        this.hp = 100;
         this.maxHp = 100;
         this.id = `ENT-${Math.random() * Math.random() + Math.random()}`
     }
@@ -16,5 +12,16 @@ export default class Entity {
     damage(amount) {
         this.hp -= amount;
         return this.hp <= 0;
+    }
+}
+
+export class VisibleEntity extends Entity{
+    constructor(x, y) {
+        super();
+        this.x = x;
+        this.y = y;
+        this.width = 30;
+        this.height = 30;
+        this.color = 'white';
     }
 }
