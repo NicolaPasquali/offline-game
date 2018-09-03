@@ -2,7 +2,7 @@ export class Entity {
     constructor() {
         this.hp = 100;
         this.maxHp = 100;
-        this.id = `ENT-${Math.random() * Math.random() + Math.random()}`
+        this.id = `ENT-${Math.floor(Math.random() * 500)}`
     }
 
     heal(amount) {
