@@ -3,6 +3,7 @@ import {createBackground} from './utilities';
 import InformationDisplay from './models/InformationDisplay';
 import Player from './models/Player';
 import BasicEnemy from "./models/enemies/BasicEnemy";
+import EnemiesFactory from "./models/enemies/EnemiesFactory";
 
 kontra.init('gameScreen');
 
@@ -20,11 +21,7 @@ function initialize() {
     initializeInformationDisplay();
     informationDisplay.render();
 
-    kontra.gameLoop({
-        fps: 30,
-        update: gameLoopUpdate,
-        render: gameLoopRender
-    }).start();
+    kontra.gameLoop({fps: 30, update: gameLoopUpdate, render: gameLoopRender}).start();
 }
 
 function setConnectionStatusListeners() {
@@ -34,7 +31,7 @@ function setConnectionStatusListeners() {
 }
 
 function spawnEnemies() {
-    enemies = [new BasicEnemy(), new BasicEnemy(), new BasicEnemy()];
+    enemies = EnemiesFactory.spawnBasicEnemies(kontra, 250, 175, 5);
 }
 
 function initializeInformationDisplay() {
@@ -47,6 +44,7 @@ function gameLoopUpdate() {
 
 function gameLoopRender() {
     background.render();
+    enemies.forEach((enemy) => enemy.render());
 }
 
 initialize();
