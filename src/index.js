@@ -1,27 +1,17 @@
 import '../lib/kontra'; // FIXME Sostituire con la versione minificata
 import {createBackground} from './utilities';
-import InformationDisplay from './models/InformationDisplay';
-import Player from './models/Player';
-import BasicEnemy from "./models/enemies/BasicEnemy";
-import EnemiesFactory from "./models/enemies/EnemiesFactory";
+import BattleSystem from './services/BattleSystem';
 
 kontra.init('gameScreen');
 
 let connected;
-let background;
-let player;
-let enemies;
-let informationDisplay;
+let background = createBackground(kontra, 'black');
+let battleSystem = new BattleSystem(kontra);
 
 function initialize() {
     setConnectionStatusListeners();
-    background = createBackground(kontra, 'black');
-    player = new Player();
-    spawnEnemies();
-    initializeInformationDisplay();
-    informationDisplay.render();
-
-    kontra.gameLoop({fps: 30, update: gameLoopUpdate, render: gameLoopRender}).start();
+    battleSystem.startBattle();
+    kontra.gameLoop({fps: 1, update: gameLoopUpdate, render: gameLoopRender}).start();
 }
 
 function setConnectionStatusListeners() {
@@ -30,21 +20,13 @@ function setConnectionStatusListeners() {
     window.addEventListener('offline', (e) => connected = false, false);
 }
 
-function spawnEnemies() {
-    enemies = EnemiesFactory.spawnBasicEnemies(kontra, 250, 175, 5);
-}
-
-function initializeInformationDisplay() {
-    informationDisplay = new InformationDisplay(player);
-    informationDisplay.enemies = enemies;
-}
-
 function gameLoopUpdate() {
+    battleSystem.stepBattle();
 }
 
 function gameLoopRender() {
     background.render();
-    enemies.forEach((enemy) => enemy.render());
+    battleSystem.render();
 }
 
 initialize();

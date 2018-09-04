@@ -1,7 +1,7 @@
 export default class InformationDisplay {
-    constructor(player) {
+    constructor(player, enemies) {
         this.player = player;
-        this.enemies = [];
+        this.enemies = enemies;
 
         this._enemiesContainer = document.getElementById('enemiesContainer');
         this._playerCurrentHp = document.getElementById('playerCurrentHp');
