@@ -5,8 +5,8 @@ import BattleSystem from './services/BattleSystem';
 kontra.init('gameScreen');
 
 let connected;
-let background = createBackground(kontra, 'black');
-let battleSystem = new BattleSystem(kontra);
+const background = createBackground(kontra, 'black');
+const battleSystem = new BattleSystem(kontra);
 
 function initialize() {
     setConnectionStatusListeners();
