@@ -16,26 +16,12 @@ export class Entity {
 }
 
 export class VisibleEntity extends Entity {
-    constructor(kontra, x, y) {
+    constructor(x, y) {
         super();
         this.x = x;
         this.y = y;
         this.width = 30;
         this.height = 30;
         this.color = 'white';
-    }
-
-    _createSprite() {
-        this._sprite = kontra.sprite({
-            x: this.x,
-            y: this.y,
-            width: this.width,
-            height: this.height,
-            color: this.color
-        });
-    }
-
-    render() {
-        this._sprite.render();
     }
 }
