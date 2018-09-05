@@ -59,4 +59,9 @@ export default class InformationDisplay {
 
         return infoElement;
     }
+
+    deleteEnemy(id) {
+        let enemyElement = document.getElementById(id);
+        enemyElement.parentNode.removeChild(enemyElement);
+    }
 }

@@ -27,8 +27,8 @@ export default class BattleSystem {
 
     _loopBattle() {
         this._stepBattle()
-            .then(() => {
-                if (this.enemies.length > 0) {
+            .then((enemiesLeft) => {
+                if (enemiesLeft > 0) {
                     this._loopBattle();
                 } else {
                     this.startBattle();
@@ -39,12 +39,56 @@ export default class BattleSystem {
     _stepBattle() {
         return this.playerControls.awaitForAction()
             .then((selectedAction) => {
-                console.log('Skill:', selectedAction);
-                console.log('Enemy:', this.playerControls.selectedEnemyId);
-
+                this._managePlayerAction(selectedAction);
                 this.enemies.forEach((enemy) => enemy.attack(this.player));
                 this._render();
+                return this.enemies.length;
             });
+    }
+
+    _managePlayerAction(selectedAction) {
+        switch (selectedAction) {
+            case 'write-code':
+                this._attackSelectedEnemy(10);
+                break;
+            case 'debug':
+                this._attackSelectedEnemy(15);
+                break;
+            case 'meditate':
+                this.player.addFocus(10);
+                break;
+            case 'meeting':
+                this._attackSelectedEnemy(15);
+                break;
+            case 'pair-programming':
+                this._attackSelectedEnemy(20);
+                break;
+            case 'procrastinate':
+                this.player.relieveStress(10);
+                break;
+            default:
+                break;
+        }
+    }
+
+    _attackSelectedEnemy(damageAmount) {
+        if (this.playerControls.selectedEnemyId) {
+            let enemy = this.enemies.find((enemy) => {
+                return enemy.id === this.playerControls.selectedEnemyId;
+            });
+
+            if (enemy) {
+                let isDead = enemy.damage(damageAmount);
+                if (isDead) {
+                    let index = this.enemies.findIndex((enemy) => {
+                        return enemy.id === this.playerControls.selectedEnemyId;
+                    });
+                    this.enemies.splice(index, 1);
+                    this.informationDisplay.enemies = this.enemies;
+                    this.informationDisplay.deleteEnemy(this.playerControls.selectedEnemyId);
+                }
+            }
+        }
     }
 
     _render() {
