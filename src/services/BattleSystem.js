@@ -27,6 +27,10 @@ export default class BattleSystem {
             .then((selectedAction) => {
                 console.log('Skill:', selectedAction);
                 console.log('Enemy:', this.playerControls.selectedEnemyId);
+
+                this.enemies.forEach((enemy) => {
+                    enemy.attack(this.player);
+                });
             });
     }
 
