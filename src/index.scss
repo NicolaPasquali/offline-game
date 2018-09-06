@@ -24,9 +24,14 @@ body {
     flex-direction: row;
 }
 
-.game-screen__events_log {
+#game-screen__events_log {
     @include basic-section();
     flex: 30;
+    flex-direction: column;
+    padding: 0 1rem;
+    div {
+        margin: .5rem 0;
+    }
 }
 
 .game-screen__canvas-container {

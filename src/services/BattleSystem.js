@@ -3,6 +3,7 @@ import EnemiesFactory from '../models/enemies/EnemiesFactory';
 import InformationDisplay from './InformationDisplay';
 import PlayerControls from './PlayerControls';
 import Renderer from './Renderer';
+import LogService from './LogService';
 
 export default class BattleSystem {
     constructor() {
@@ -11,12 +12,21 @@ export default class BattleSystem {
         this.player = new Player();
         this.enemies = [];
         this.informationDisplay = new InformationDisplay(this.player, this.enemies);
+        this.logService = new LogService();
     }
 
     startBattle() {
         this._spawnEnemies();
         this._render();
         this._loopBattle();
+        this.logService.logAttack('You', this.enemies[0].name, 666);
+        this.logService.logAttack(this.enemies[0].name, 'you', 333);
+
+        this.logService.addStress(this.enemies[0], 50);
+        this.logService.relieveStress(50);
+
+        this.logService.loseFocus(this.enemies[0], 50);
+        this.logService.addFocus(50);
     }
 
     _spawnEnemies() {
