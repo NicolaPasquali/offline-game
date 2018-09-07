@@ -36,28 +36,18 @@ export default class InformationDisplay {
 
     _renderEnemiesInfo() {
         if (this.enemies.length > 0) {
-            this.enemies.forEach((enemy) => {
-                let infoElement = this._getOrCreateEnemyInfoElement(enemy);
-                infoElement.childNodes[0].innerText = enemy.name;
-                infoElement.childNodes[1].innerText = `HP: ${enemy.hp}/${enemy.maxHp}`;
-            });
+            this.enemies.forEach((enemy) => this._renderEnemyInfo(enemy));
         }
     }
 
-    _getOrCreateEnemyInfoElement(enemy) {
+    _renderEnemyInfo(enemy) {
         let infoElement = document.getElementById(enemy.id);
-        if (infoElement) {
-            return infoElement;
+        if (!infoElement) {
+            infoElement = document.createElement('template');
         }
-
-        infoElement = document.createElement('fieldset');
-        infoElement.className = 'enemy';
-        infoElement.id = enemy.id;
-        infoElement.appendChild(document.createElement('legend'));
-        infoElement.appendChild(document.createElement('div'));
-        this._enemiesContainer.appendChild(infoElement);
-
-        return infoElement;
+        infoElement.innerHTML =
+            `<fieldset class="enemy" id="${enemy.id}"><legend>${enemy.name}</legend><div>HP: ${enemy.hp}/${enemy.maxHp}</div></fieldset>`;
+        this._enemiesContainer.appendChild(infoElement.content.firstChild);
     }
 
     deleteEnemy(id) {
