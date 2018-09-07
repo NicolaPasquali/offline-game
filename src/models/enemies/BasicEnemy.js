@@ -13,11 +13,23 @@ export default class BasicEnemy extends VisibleEntity {
         let random = Math.floor(Math.random() * 500);
         if (random <= 480) {
             player.damage(1);
+            return {
+                type: 'damage',
+                value: 1
+            };
         } else {
             if (random <= 580) {
                 player.addStress(5);
+                return {
+                    type: 'stress',
+                    value: 5
+                };
             } else {
                 player.loseFocus(5);
+                return {
+                    type: 'focus',
+                    value: 5
+                };
             }
         }
     }

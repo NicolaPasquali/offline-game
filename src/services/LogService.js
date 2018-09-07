@@ -9,16 +9,21 @@ export default class LogService {
         this._log(template);
     }
 
-    loseFocus(enemy, amount) {
-        this._parameterAlterationLog(enemy.name, 'made you lose', amount, 'wheat', 'focus');
+    logDeath(entityName) {
+        let template = `<div>${entityName} <span style="color: red">died</span>!</div>`;
+        this._log(template);
+    }
+
+    loseFocus(enemyName, amount) {
+        this._parameterAlterationLog(enemyName, 'made you lose', amount, 'wheat', 'focus');
     }
 
     addFocus(amount) {
         this._parameterAlterationLog('You', 'gained', amount, 'lightgreen', 'focus');
     }
 
-    addStress(enemy, amount) {
-        this._parameterAlterationLog(enemy.name, 'added', amount, 'wheat', 'stress');
+    addStress(enemyName, amount) {
+        this._parameterAlterationLog(enemyName, 'added', amount, 'wheat', 'stress');
     }
 
     relieveStress(amount) {
