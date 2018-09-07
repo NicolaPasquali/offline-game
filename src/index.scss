@@ -66,6 +66,7 @@ body {
 
 .enemy:hover {
     border-color: $section-border-color;
+    color: $section-border-color;
     legend {
         color: $section-border-color;
     }
