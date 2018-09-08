@@ -7,6 +7,7 @@ export default class Player extends Entity{
         this.maxHp = 50;
         this.xp = 0;
         this.xpToNextLevel = 100;
+        this.name = 'You';
 
         // Statistics
         this.programming = 1;
