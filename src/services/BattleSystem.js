@@ -3,7 +3,7 @@ import EnemiesFactory from '../models/enemies/EnemiesFactory';
 import InformationDisplay from './InformationDisplay';
 import PlayerControls from './PlayerControls';
 import Renderer from './Renderer';
-import LogService from './LogService';
+import EventLogger from './EventLogger';
 import AttackManager from "./AttackManager";
 
 export default class BattleSystem {
@@ -56,7 +56,7 @@ export default class BattleSystem {
     }
 
     _manageDeadEnemy(enemy) {
-        LogService.logDeath(enemy.name);
+        EventLogger.death(enemy.name);
         let index = this.enemies.findIndex((enemy) => enemy.id === this.playerControls.selectedEnemyId);
         this.enemies.splice(index, 1);
         this.informationDisplay.enemies = this.enemies;
