@@ -3,13 +3,11 @@ export default class PlayerControls {
         this.selectedEnemyId = undefined;
     }
 
-    initializeEnemySelectionEvents() {
+    addEnemySelectionEvents() {
         let enemies = document.getElementsByClassName('enemy');
         for (let i = 0; i < enemies.length; i++) {
             let enemy = enemies[i];
-            enemy.addEventListener('click', () => {
-                this.selectedEnemyId = enemy.getAttribute('id');
-            });
+            enemy.addEventListener('click', () => this.selectedEnemyId = enemy.getAttribute('id'));
         }
     }
 

@@ -36,9 +36,7 @@ export default class EventLogger {
         let logElement = document.createElement('template');
 
         logElement.innerHTML = template;
-        console.log(eventsLogElement.childNodes.length);
         if (eventsLogElement.childNodes.length >= 14) {
-            console.log('Oh yeah');
             eventsLogElement.removeChild(eventsLogElement.childNodes[1]);
         }
         document.getElementById('game-screen__events_log').appendChild(logElement.content.firstChild);

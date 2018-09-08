@@ -24,7 +24,6 @@ export default class BattleSystem {
     _spawnEnemies() {
         this.enemies = EnemiesFactory.spawnBasicEnemies(250, 175, 5);
         this.informationDisplay.enemies = this.enemies;
-        setTimeout(() => this.playerControls.initializeEnemySelectionEvents());
     }
 
     _loopBattle() {
@@ -39,6 +38,7 @@ export default class BattleSystem {
     }
 
     _stepBattle() {
+        setTimeout(() => this.playerControls.addEnemySelectionEvents());
         return this.playerControls.awaitForAction()
             .then((selectedAction) => {
                 this._managePlayerAction(selectedAction);
