@@ -41,18 +41,24 @@ export default class BattleSystem {
         setTimeout(() => this.playerControls.addEnemySelectionEvents());
         return this.playerControls.awaitForAction()
             .then((selectedAction) => {
-                this._managePlayerAction(selectedAction);
-                this.enemies.forEach((enemy) => enemy.attack(this.player));
-                this._render();
+                if (this._managePlayerAction(selectedAction)) {
+                    this.enemies.forEach((enemy) => enemy.attack(this.player));
+                    this._render();
+                }
                 return this.enemies.length;
             });
     }
 
     _managePlayerAction(selectedAction) {
-        let selectedEnemy = this.enemies.find((enemy) => enemy.id === this.playerControls.selectedEnemyId);
-        if (AttackManager.managePlayerAction(selectedAction, this.player, selectedEnemy)) {
-            this._manageDeadEnemy(selectedEnemy);
+        if (selectedAction.cost <= this.player.focus) {
+            this.player.focus -= selectedAction.cost;
+            let selectedEnemy = this.enemies.find((enemy) => enemy.id === this.playerControls.selectedEnemyId);
+            if (AttackManager.managePlayerAction(selectedAction.name, this.player, selectedEnemy)) {
+                this._manageDeadEnemy(selectedEnemy);
+            }
+            return true;
         }
+        return false;
     }
 
     _manageDeadEnemy(enemy) {

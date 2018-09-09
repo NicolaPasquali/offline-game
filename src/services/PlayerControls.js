@@ -17,7 +17,10 @@ export default class PlayerControls {
             for (let i = 0; i < skillElements.length; i++) {
                 let skillElement = skillElements[i];
                 skillElement.addEventListener('click', () => {
-                    resolve(skillElement.getAttribute('skill'));
+                    resolve({
+                        name: skillElement.getAttribute('skill'),
+                        cost: skillElement.getAttribute('cost')
+                    });
                 });
             }
         });
