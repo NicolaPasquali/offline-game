@@ -1,5 +1,5 @@
 import Player from '../models/Player';
-import EnemiesFactory from '../models/enemies/EnemiesFactory';
+import EnemiesFactory from './EnemiesFactory';
 import InformationDisplay from './InformationDisplay';
 import PlayerControls from './PlayerControls';
 import Renderer from './Renderer';
@@ -18,14 +18,10 @@ export default class BattleSystem {
 
     startBattle() {
         this._numberOfFight++;
-        this._startBattleMessage();
+        EventLogger.battleStarted(this._numberOfFight);
         this._spawnEnemies();
         this._render();
         this._loopBattle();
-    }
-
-    _startBattleMessage() {
-        EventLogger.battleStarted(this._numberOfFight);
     }
 
     _spawnEnemies() {
@@ -71,6 +67,7 @@ export default class BattleSystem {
             }
             return true;
         }
+        alert('Not enough focus');
         return false;
     }
 
