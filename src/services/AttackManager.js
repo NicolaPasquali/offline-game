@@ -19,19 +19,19 @@ export default class AttackManager {
     static managePlayerAction(selectedAction, player, selectedEnemy) {
         switch (selectedAction) {
             case 'write-code':
-                return selectedEnemy ? selectedEnemy.damage(10) : undefined;
+                return AttackManager.damage(player.name, selectedEnemy, 10);
             case 'debug':
-                return selectedEnemy ? selectedEnemy.damage(15) : undefined;
+                return AttackManager.damage(player.name, selectedEnemy, 10);
             case 'meditate':
+                EventLogger.addFocus(10);
                 player.addFocus(10);
-                return false;
             case 'meeting':
-                return selectedEnemy ? selectedEnemy.damage(15) : undefined;
+                return AttackManager.damage(player.name, selectedEnemy, 15);
             case 'pair-programming':
-                return selectedEnemy ? selectedEnemy.damage(20) : undefined;
+                return AttackManager.damage(player.name, selectedEnemy, 20);
             case 'procrastinate':
+                EventLogger.relieveStress(10);
                 player.relieveStress(10);
-                return false;
             default:
                 break;
         }

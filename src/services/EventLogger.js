@@ -15,7 +15,7 @@ export default class EventLogger {
     }
 
     static addFocus(amount) {
-        EventLogger._parameterAlterationLog('You', 'gained', amount, 'lightgreen', 'focus');
+        EventLogger._parameterAlterationLog('You', 'recovered', amount, 'lightgreen', 'focus');
     }
 
     static addStress(enemyName, amount) {
