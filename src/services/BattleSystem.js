@@ -13,17 +13,29 @@ export default class BattleSystem {
         this.player = new Player();
         this.enemies = [];
         this.informationDisplay = new InformationDisplay(this.player, this.enemies);
+        this._numberOfFight = 0;
     }
 
     startBattle() {
+        this._numberOfFight++;
+        this._startBattleMessage();
         this._spawnEnemies();
         this._render();
         this._loopBattle();
     }
 
+    _startBattleMessage() {
+        EventLogger.battleStarted(this._numberOfFight);
+    }
+
     _spawnEnemies() {
         this.enemies = EnemiesFactory.spawnBasicEnemies(250, 175, 5);
         this.informationDisplay.enemies = this.enemies;
+    }
+
+    _render() {
+        this.renderer.renderEnemies(this.enemies);
+        this.informationDisplay.render();
     }
 
     _loopBattle() {
@@ -32,6 +44,7 @@ export default class BattleSystem {
                 if (enemiesLeft > 0) {
                     this._loopBattle();
                 } else {
+                    this._endBattleMessage();
                     this.startBattle();
                 }
             });
@@ -69,8 +82,7 @@ export default class BattleSystem {
         this.informationDisplay.deleteEnemy(this.playerControls.selectedEnemyId);
     }
 
-    _render() {
-        this.renderer.renderEnemies(this.enemies);
-        this.informationDisplay.render();
+    _endBattleMessage() {
+        EventLogger.battleEnded(this._numberOfFight);
     }
 }

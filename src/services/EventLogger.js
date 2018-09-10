@@ -31,6 +31,16 @@ export default class EventLogger {
         EventLogger._log(template);
     }
 
+    static battleStarted(numberOfFight) {
+        let template = `<div>Fight #${numberOfFight} started!</div>`;
+        EventLogger._log(template);
+    }
+
+    static battleEnded(numberOfFight) {
+        let template = `<div>Fight #${numberOfFight} ended!</div>`;
+        EventLogger._log(template);
+    }
+
     static _log(template) {
         let eventsLogElement = document.getElementById('game-screen__events_log');
         let logElement = document.createElement('template');
