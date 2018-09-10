@@ -1,8 +1,8 @@
 import BasicEnemy from './BasicEnemy';
 
 export default class President extends BasicEnemy {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.color = '#323232';
         this.name = 'President';
         this.hp = 1500;

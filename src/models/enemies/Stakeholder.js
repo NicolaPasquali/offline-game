@@ -1,8 +1,8 @@
 import BasicEnemy from './BasicEnemy';
 
 export default class Stakeholder extends BasicEnemy {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.color = '#666b11';
         this.name = 'Stakeholder';
         this.hp = 70;

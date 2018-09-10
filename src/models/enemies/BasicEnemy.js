@@ -2,8 +2,8 @@ import {VisibleEntity} from '../Entity';
 import AttackManager from '../../services/AttackManager';
 
 export default class BasicEnemy extends VisibleEntity {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.color = '#374F6B';
         this.name = 'Basic';
         this.hp = 50;

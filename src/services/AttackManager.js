@@ -19,17 +19,16 @@ export default class AttackManager {
     static managePlayerAction(selectedAction, player, selectedEnemy) {
         switch (selectedAction) {
             case 'write-code':
-                return AttackManager.damage(player.name, selectedEnemy, 10);
             case 'debug':
                 return AttackManager.damage(player.name, selectedEnemy, 10);
-            case 'meditate':
-                EventLogger.addFocus(10);
-                player.addFocus(10);
-                break;
             case 'meeting':
                 return AttackManager.damage(player.name, selectedEnemy, 15);
             case 'pair-programming':
                 return AttackManager.damage(player.name, selectedEnemy, 20);
+            case 'meditate':
+                EventLogger.addFocus(10);
+                player.addFocus(10);
+                break;
             case 'procrastinate':
                 EventLogger.relieveStress(10);
                 player.relieveStress(10);

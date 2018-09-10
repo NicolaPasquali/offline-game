@@ -1,8 +1,8 @@
 import BasicEnemy from './BasicEnemy';
 
 export default class Manager extends BasicEnemy {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.color = '#186b10';
         this.name = 'Manager';
         this.hp = 150;

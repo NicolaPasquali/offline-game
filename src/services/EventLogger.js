@@ -31,13 +31,13 @@ export default class EventLogger {
         EventLogger._log(template);
     }
 
-    static battleStarted(numberOfFight) {
-        let template = `<div>Fight #${numberOfFight} started!</div>`;
+    static battleStarted(numberOfBattle) {
+        let template = `<div>Battle #${numberOfBattle} started!</div>`;
         EventLogger._log(template);
     }
 
-    static battleEnded(numberOfFight) {
-        let template = `<div>Fight #${numberOfFight} ended!</div>`;
+    static battleEnded(numberOfBattle) {
+        let template = `<div>Battle #${numberOfBattle} ended!</div>`;
         EventLogger._log(template);
     }
 

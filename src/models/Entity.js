@@ -12,10 +12,10 @@ export class Entity {
 }
 
 export class VisibleEntity extends Entity {
-    constructor(x, y) {
+    constructor() {
         super();
-        this.x = x;
-        this.y = y;
+        this.x = 0;
+        this.y = 175;
         this.width = 30;
         this.height = 30;
         this.color = 'white';

@@ -1,8 +1,8 @@
 import BasicEnemy from './BasicEnemy';
 
 export default class AssholeColleague extends BasicEnemy {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.color = '#666b11';
         this.name = 'Asshole Colleague';
         this.hp = 50;

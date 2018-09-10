@@ -1,8 +1,8 @@
 import BasicEnemy from './BasicEnemy';
 
 export default class Bug extends BasicEnemy {
-    constructor(x, y) {
-        super(x, y);
+    constructor() {
+        super();
         this.color = '#6b141d';
         this.name = 'Bug';
         this.hp = 35;

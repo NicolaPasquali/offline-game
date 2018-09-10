@@ -1,5 +1,5 @@
 import Player from '../models/Player';
-import EnemiesFactory from './EnemiesFactory';
+import EnemySpawner from './EnemySpawner';
 import InformationDisplay from './InformationDisplay';
 import PlayerControls from './PlayerControls';
 import Renderer from './Renderer';
@@ -13,19 +13,20 @@ export default class BattleSystem {
         this.player = new Player();
         this.enemies = [];
         this.informationDisplay = new InformationDisplay(this.player, this.enemies);
-        this._numberOfFight = 0;
+        this.enemySpawner = new EnemySpawner();
+        this._numberOfBattle = 0;
     }
 
     startBattle() {
-        this._numberOfFight++;
-        EventLogger.battleStarted(this._numberOfFight);
+        this._numberOfBattle++;
+        EventLogger.battleStarted(this._numberOfBattle);
         this._spawnEnemies();
         this._render();
         this._loopBattle();
     }
 
     _spawnEnemies() {
-        this.enemies = EnemiesFactory.spawnBasicEnemies(250, 175, 5);
+        this.enemies = this.enemySpawner.spawnBattleNumber(this._numberOfBattle);
         this.informationDisplay.enemies = this.enemies;
     }
 
@@ -80,6 +81,6 @@ export default class BattleSystem {
     }
 
     _endBattleMessage() {
-        EventLogger.battleEnded(this._numberOfFight);
+        EventLogger.battleEnded(this._numberOfBattle);
     }
 }
