@@ -11,7 +11,6 @@ export default class BasicEnemy extends VisibleEntity {
         this.attackPower = 1;
         this.debuffPower= 5;
         this.x = 0;
-        this.y = 0;
         this.spriteX = 0;
         this.spriteY = 0;
     }
