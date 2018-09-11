@@ -63,6 +63,10 @@ export default class BattleSystem {
         if (selectedAction.cost <= this.player.focus) {
             this.player.focus -= selectedAction.cost;
             let selectedEnemy = this.enemies.find((enemy) => enemy.id === this.playerControls.selectedEnemyId);
+            if (selectedAction.type === 'off' && !selectedEnemy) {
+                alert('No enemy selected');
+                return false;
+            }
             if (AttackManager.managePlayerAction(selectedAction.name, this.player, selectedEnemy)) {
                 this._manageDeadEnemy(selectedEnemy);
             }

@@ -19,7 +19,8 @@ export default class PlayerControls {
                 skillElement.addEventListener('click', () => {
                     resolve({
                         name: skillElement.getAttribute('skill'),
-                        cost: skillElement.getAttribute('cost')
+                        cost: skillElement.getAttribute('cost'),
+                        type: skillElement.getAttribute('type')
                     });
                 });
             }
