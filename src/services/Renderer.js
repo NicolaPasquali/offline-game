@@ -12,14 +12,9 @@ export default class Renderer {
         
         let sWidth = 36;
         let sHeight = 144;    
-        //void ctx.drawImage(image, enemy.x, enemy.y, enemy.width, enemy.height, dx, dy, enemy.width, enemy.height);
 
         enemies.forEach((enemy) => {
-            console.log(enemy);
-            //this.ctx.fillStyle = enemy.color;
-            //this.ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height)
-            this.ctx.drawImage(sprite, enemy.spriteX, enemy.spriteY, enemy.width, enemy.height, enemy.x, enemy.y, enemy.width, enemy.height);
-            console.log(sprite, enemy.spriteX, enemy.spriteY, enemy.width, enemy.height, enemy.x, enemy.y, enemy.width, enemy.height);
+            this.ctx.drawImage(sprite, enemy.spriteX, enemy.spriteY, sWidth, sHeight, enemy.x, enemy.y, sWidth, sHeight);
         });
     }
 
