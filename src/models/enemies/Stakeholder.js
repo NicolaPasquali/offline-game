@@ -9,6 +9,7 @@ export default class Stakeholder extends BasicEnemy {
         this.maxHp = 70;
         this.attackPower = 4;
         this.debuffPower= 5;
+        this.spriteX = 144;
         this.xp = 20;
     }
 }
