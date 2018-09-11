@@ -17,7 +17,7 @@ export default class Player extends Entity {
         this.teamWork = 1;
 
         // Statuses
-        this.focus = 10000;
+        this.focus = 10000; // FIXME Riportami a 100
         this.stress = 0;
     }
 
@@ -39,7 +39,10 @@ export default class Player extends Entity {
             this.level++;
             this.xpToNextLevel += Math.round(this.xpToNextLevel * .10);
             this.maxHp += 5;
-            // TODO Increment statistics
+            this.programming += Math.round(Math.random() * 3);
+            this.problemSolving += Math.round(Math.random() * 3);
+            this.communication += Math.round(Math.random() * 3);
+            this.teamWork += Math.round(Math.random() * 3);
             this.xp = 0;
         }
     }
