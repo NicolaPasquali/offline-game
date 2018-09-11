@@ -42,6 +42,7 @@ export default class BattleSystem {
                     this._loopBattle();
                 } else {
                     this._endBattleMessage();
+                    this.player.hp = this.player.maxHp;
                     this.startBattle();
                 }
             });

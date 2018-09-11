@@ -32,13 +32,26 @@ export default class EnemySpawner {
 
     _randomEnemyParty(battleNumber) {
         let enemies = [];
-        for (let i = 0; i < 1; i++) {
-            enemies.push(this._randomEnemyFromBattleNumber(battleNumber));
+        let partySize = Math.max(1, Math.round(Math.random() * 5));
+        for (let i = 0; i < partySize; i++) {
+            let randomEnemy = Math.round(Math.random() * (battleNumber / 10));
+            enemies.push(this._createEnemy(randomEnemy));
         }
         return enemies;
     }
 
-    _randomEnemyFromBattleNumber(battleNumber) {
-        return new Bug();
+    _createEnemy(enemyType) {
+        switch (enemyType) {
+            case 0:
+                return new Bug();
+            case 1:
+                return new AssholeColleague();
+            case 2:
+                return new Manager();
+            case 3:
+                return new Stakeholder();
+            default:
+                return new Bug();
+        }
     }
 }
