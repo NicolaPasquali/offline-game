@@ -36,8 +36,8 @@ export default class EventLogger {
         EventLogger._log(template);
     }
 
-    static battleEnded(numberOfBattle) {
-        let template = `<div>Battle #${numberOfBattle} ended!</div>`;
+    static battleEnded(numberOfBattle, xp) {
+        let template = `<div>Battle #${numberOfBattle} ended! Earned ${xp} xp</div>`;
         EventLogger._log(template);
     }
 

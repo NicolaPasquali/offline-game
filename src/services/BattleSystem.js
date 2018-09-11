@@ -15,6 +15,7 @@ export default class BattleSystem {
         this.informationDisplay = new InformationDisplay(this.player, this.enemies);
         this.enemySpawner = new EnemySpawner();
         this._numberOfBattle = 0;
+        this._turnXp = 0;
     }
 
     startBattle() {
@@ -43,6 +44,8 @@ export default class BattleSystem {
                 } else {
                     this._endBattleMessage();
                     this.player.hp = this.player.maxHp;
+                    this.player.addXp(this._turnXp);
+                    this._turnXp = 0;
                     this.startBattle();
                 }
             });
@@ -79,6 +82,7 @@ export default class BattleSystem {
 
     _manageDeadEnemy(enemy) {
         EventLogger.death(enemy.name);
+        this._turnXp += enemy.xp;
         let index = this.enemies.findIndex((enemy) => enemy.id === this.playerControls.selectedEnemyId);
         this.enemies.splice(index, 1);
         this.informationDisplay.enemies = this.enemies;
@@ -86,6 +90,6 @@ export default class BattleSystem {
     }
 
     _endBattleMessage() {
-        EventLogger.battleEnded(this._numberOfBattle);
+        EventLogger.battleEnded(this._numberOfBattle, this._turnXp);
     }
 }

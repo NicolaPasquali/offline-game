@@ -4,6 +4,7 @@ export default class InformationDisplay {
         this.enemies = enemies;
 
         this._enemiesContainer = document.getElementById('enemiesContainer');
+        this._playerLevel = document.getElementById('playerLevel');
         this._playerCurrentHp = document.getElementById('playerCurrentHp');
         this._playerMaxHp = document.getElementById('playerMaxHp');
         this._playerFocus = document.getElementById('playerFocus');
@@ -22,6 +23,7 @@ export default class InformationDisplay {
     }
 
     _renderPlayerInfo() {
+        this._playerLevel.innerText = this.player.level;
         this._playerCurrentHp.innerText = this.player.hp;
         this._playerMaxHp.innerText = `/ ${this.player.maxHp}`;
         this._playerFocus.innerText = `${this.player.focus}%`;

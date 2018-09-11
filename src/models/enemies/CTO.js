@@ -9,5 +9,7 @@ export default class CTO extends BasicEnemy {
         this.maxHp = 450;
         this.attackPower = 12;
         this.debuffPower= 9;
+        this.spriteX = 72;
+        this.xp = 200;
     }
 }

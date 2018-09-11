@@ -10,5 +10,6 @@ export default class AssholeColleague extends BasicEnemy {
         this.attackPower = 2;
         this.debuffPower= 4;
         this.x = 0;
+        this.xp = 10;
     }
 }
