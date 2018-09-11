@@ -22,6 +22,7 @@ body {
 .game-screen {
     display: flex;
     flex-direction: row;
+    max-height: 100vh;
 }
 
 #game-screen__events_log {
@@ -29,6 +30,8 @@ body {
     flex: 30;
     flex-direction: column;
     padding: 0 1rem;
+    max-height: 100%;
+    overflow-y: hidden;
     div {
         margin: .5rem 0;
     }
