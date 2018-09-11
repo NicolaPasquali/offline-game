@@ -1,12 +1,13 @@
 import {Entity} from './Entity';
 
-export default class Player extends Entity{
+export default class Player extends Entity {
     constructor() {
         super();
+        this.level = 1;
         this.hp = 50;
         this.maxHp = 50;
         this.xp = 0;
-        this.xpToNextLevel = 100;
+        this.xpToNextLevel = 50;
         this.name = 'You';
 
         // Statistics
@@ -16,14 +17,31 @@ export default class Player extends Entity{
         this.teamWork = 1;
 
         // Statuses
-        this.focus = 100;
+        this.focus = 10000;
         this.stress = 0;
     }
 
-    levelUp() {
-        this.xpToNextLevel += 100;
-        this.maxHp += 5;
-        // TODO Increment statistics
+    addXp(amount) {
+        while (amount > 0) {
+            if (amount <= this.xpToNextLevel - this.xp) {
+                this.xp += amount;
+                amount = 0;
+            } else {
+                amount -= this.xpToNextLevel - this.xp;
+                this.xp += this.xpToNextLevel - this.xp;
+            }
+            this._levelUpIfHasEnoughXp();
+        }
+    }
+
+    _levelUpIfHasEnoughXp() {
+        if (this.xp === this.xpToNextLevel) {
+            this.level++;
+            this.xpToNextLevel += Math.round(this.xpToNextLevel * .10);
+            this.maxHp += 5;
+            // TODO Increment statistics
+            this.xp = 0;
+        }
     }
 
     addStress(amount) {
