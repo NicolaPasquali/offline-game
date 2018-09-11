@@ -9,5 +9,6 @@ export default class President extends BasicEnemy {
         this.maxHp = 1500;
         this.attackPower = 35;
         this.debuffPower= 20;
+        this.spriteX = 108;
     }
 }

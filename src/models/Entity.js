@@ -15,9 +15,9 @@ export class VisibleEntity extends Entity {
     constructor() {
         super();
         this.x = 0;
-        this.y = 175;
-        this.width = 30;
-        this.height = 30;
+        this.y = 0;
+        this.width = 36;
+        this.height = 144;
         this.color = 'white';
     }
 }
