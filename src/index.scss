@@ -30,7 +30,7 @@ body {
 
 #game-screen__events_log {
     @include basic-section();
-    flex: 30;
+    flex: 35;
     flex-direction: column;
     padding: 0 1rem;
     max-height: 100%;
@@ -42,14 +42,14 @@ body {
 
 .game-screen__canvas-container {
     display: flex;
-    flex: 40;
+    flex: 30;
     flex-direction: column;
     justify-content: flex-end;
 }
 
 .game-screen__information-display {
     @include basic-section();
-    flex: 30;
+    flex: 35;
     flex-direction: column;
 }
 

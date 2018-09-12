@@ -5,16 +5,14 @@ export default class InformationDisplay {
 
         this._enemiesContainer = document.getElementById('enemiesContainer');
         this._playerLevel = document.getElementById('playerLevel');
-        this._playerCurrentHp = document.getElementById('playerCurrentHp');
-        this._playerMaxHp = document.getElementById('playerMaxHp');
+        this._playerHp = document.getElementById('playerHp');
         this._playerFocus = document.getElementById('playerFocus');
         this._playerStress = document.getElementById('playerStress');
         this._playerProgramming = document.getElementById('playerProgramming');
         this._playerProblemSolving = document.getElementById('playerProblemSolving');
         this._playerCommunication = document.getElementById('playerCommunication');
         this._playerTeamWork = document.getElementById('playerTeamWork');
-        this._playerCurrentXp = document.getElementById('playerCurrentXp');
-        this._playerXpToNextLevel = document.getElementById('playerXpToNextLevel');
+        this._playerXp = document.getElementById('playerXp');
     }
 
     render() {
@@ -24,16 +22,14 @@ export default class InformationDisplay {
 
     _renderPlayerInfo() {
         this._playerLevel.innerText = `${this.player.level} (${this.player.role})`;
-        this._playerCurrentHp.innerText = this.player.hp;
-        this._playerMaxHp.innerText = `/ ${this.player.maxHp}`;
+        this._playerHp.innerText = `${this.player.hp} / ${this.player.maxHp}`;
         this._playerFocus.innerText = `${this.player.focus}%`;
         this._playerStress.innerText = `${this.player.stress}%`;
         this._playerProgramming.innerText = this.player.programming;
         this._playerProblemSolving.innerText = this.player.problemSolving;
         this._playerCommunication.innerText = this.player.communication;
         this._playerTeamWork.innerText = this.player.teamWork;
-        this._playerCurrentXp.innerText = this.player.xp;
-        this._playerXpToNextLevel.innerText = `/ ${this.player.xpToNextLevel}`;
+        this._playerXp.innerText = `${this.player.xp} / ${this.player.xpToNextLevel}`;
     }
 
     _renderEnemiesInfo() {

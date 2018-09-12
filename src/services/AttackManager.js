@@ -17,14 +17,18 @@ export default class AttackManager {
     }
 
     static managePlayerAction(selectedAction, player, selectedEnemy) {
+        let amount = 0;
         switch (selectedAction) {
             case 'write-code':
             case 'debug':
-                return AttackManager.damage(player.name, selectedEnemy, 10);
+                amount = 10 + Math.round(player.programming * player.problemSolving * .10);
+                return AttackManager.damage(player.name, selectedEnemy, amount);
             case 'meeting':
-                return AttackManager.damage(player.name, selectedEnemy, 15);
+                amount = 15 + Math.round(player.communication * player.teamWork * .10);
+                return AttackManager.damage(player.name, selectedEnemy, amount);
             case 'pair-programming':
-                return AttackManager.damage(player.name, selectedEnemy, 20);
+                amount = 20 + Math.round(player.programming * player.communication * player.teamWork * .10);
+                return AttackManager.damage(player.name, selectedEnemy, amount);
             case 'meditate':
                 EventLogger.addFocus(10);
                 player.addFocus(10);
