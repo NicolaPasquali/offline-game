@@ -11,14 +11,17 @@ $section-border-color: gold;
     display: flex;
     background-color: $section-background-color;
     border: 20px solid $section-border-color;
-    color: $text-color;
 }
 
 body {
     background-color: black;
     font-family: ManaSpc;
+    color: $text-color;
 }
 
+#gameScreen { //gamescreen canvas
+    background-color: black;
+}
 .game-screen {
     display: flex;
     flex-direction: row;
@@ -63,7 +66,6 @@ body {
 }
 
 .enemy {
-    color: $text-color;
     border-color: $text-color;
 }
 
