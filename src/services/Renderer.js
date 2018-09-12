@@ -1,5 +1,3 @@
-// FIXME Aggiungere double buffering - Così com'è, va a scatti
-// https://stackoverflow.com/questions/2795269/does-html5-canvas-support-double-buffering
 export default class Renderer {
     constructor() {
         this.ctx = document.getElementById('gameScreen').getContext('2d');
