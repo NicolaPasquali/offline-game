@@ -99,3 +99,17 @@ body {
         background-color: $text-color;
     }
 }
+
+#online-block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: red;
+
+    .online-block__text {
+        font-size: 2em;
+        margin: auto;
+        width: 50%;
+        padding-top: 4em;
+    }
+}
