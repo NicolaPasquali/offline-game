@@ -105,6 +105,7 @@ body {
     height: 100%;
     position: absolute;
     background: red;
+    display: none; //TODO: cancellatre in prod
 
     .online-block__text {
         font-size: 2em;
