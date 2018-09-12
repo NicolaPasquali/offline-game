@@ -42,13 +42,13 @@ export default class EventLogger {
     }
 
     static _log(template) {
-        let eventsLogElement = document.getElementById('game-screen__events_log');
+        let eventsLogElement = document.getElementById('game-screen__events_log-box');
         let logElement = document.createElement('template');
 
         logElement.innerHTML = template;
         if (eventsLogElement.childNodes.length >= 14) {
             eventsLogElement.removeChild(eventsLogElement.childNodes[1]);
         }
-        document.getElementById('game-screen__events_log').appendChild(logElement.content.firstChild);
+        document.getElementById('game-screen__events_log-box').prepend(logElement.content.firstChild);
     }
 }
