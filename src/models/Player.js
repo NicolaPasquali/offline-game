@@ -4,6 +4,7 @@ export default class Player extends Entity {
     constructor() {
         super();
         this.level = 1;
+        this.role = 'Trainee';
         this.hp = 50;
         this.maxHp = 50;
         this.xp = 0;
@@ -44,6 +45,30 @@ export default class Player extends Entity {
             this.communication += Math.round(Math.random() * 3);
             this.teamWork += Math.round(Math.random() * 3);
             this.xp = 0;
+            this._setRole();
+        }
+    }
+
+    _setRole() {
+        switch (Math.round(this.level)) {
+            case 5:
+                this.role = 'Junior Programmer';
+                break;
+            case 10:
+                this.role = 'Programmer';
+                break;
+            case 20:
+                this.role = 'Senior Programmer';
+                break;
+            case 30:
+                this.role = 'Manager';
+                break;
+            case 40:
+                this.role = 'CTO';
+                break;
+            case 50:
+                this.role = 'President';
+                break;
         }
     }
 

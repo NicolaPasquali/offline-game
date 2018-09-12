@@ -23,7 +23,7 @@ export default class InformationDisplay {
     }
 
     _renderPlayerInfo() {
-        this._playerLevel.innerText = this.player.level;
+        this._playerLevel.innerText = `${this.player.level} (${this.player.role})`;
         this._playerCurrentHp.innerText = this.player.hp;
         this._playerMaxHp.innerText = `/ ${this.player.maxHp}`;
         this._playerFocus.innerText = `${this.player.focus}%`;
