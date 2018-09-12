@@ -8,9 +8,15 @@ export default class Renderer {
     }
 
     renderEnemies(enemies) {
-            enemies.forEach((enemy) => {
-                this.ctx.drawImage(this.sprite, enemy.spriteX, enemy.spriteY, enemy.width, enemy.height, enemy.x, 100,
-                    enemy.width, enemy.height);
-            });
+        this._drawBackground();
+        enemies.forEach((enemy) => {
+            this.ctx.drawImage(this.sprite, enemy.spriteX, enemy.spriteY, enemy.width, enemy.height, enemy.x, 100,
+                enemy.width, enemy.height);
+        });
+    }
+
+    _drawBackground() {
+        this.ctx.fillStyle = 'black';
+        this.ctx.fillRect(0, 0, 900, 400);
     }
 }
