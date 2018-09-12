@@ -1,6 +1,5 @@
 import BattleSystem from './services/BattleSystem';
 
-let connected;
 const battleSystem = new BattleSystem();
 
 function initialize() {
@@ -19,7 +18,7 @@ function toggleVisibility(connected) {
 	// if (connected) {
 	// 	document.getElementById('online-block').style.display = 'block';
 	// } else {
- //    	document.getElementById('online-block').style.display = 'none';
+    // 	document.getElementById('online-block').style.display = 'none';
 	// }
 }
 
