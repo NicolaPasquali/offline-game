@@ -5,8 +5,8 @@ export default class Player extends Entity {
         super();
         this.level = 1;
         this.role = 'Trainee';
-        this.hp = 50;
-        this.maxHp = 50;
+        this.hp = 60;
+        this.maxHp = 60;
         this.xp = 0;
         this.xpToNextLevel = 35;
         this.name = 'You';

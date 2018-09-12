@@ -7,7 +7,7 @@ export default class Manager extends BasicEnemy {
         this.name = 'Manager';
         this.hp = 150;
         this.maxHp = 150;
-        this.attackPower = 7;
+        this.attackPower = 6;
         this.debuffPower= 15;
         this.spriteX = 36;
         this.xp = 15;

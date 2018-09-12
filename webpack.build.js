@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    entry: ['./src/index.js', './src/index.scss'],
+    entry: ['./src/index.js', './src/index.css'],
     output: {
         filename: 'main.bundle.js',
         path: path.resolve(__dirname, 'dist')
@@ -12,7 +12,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.scss$/,
+                test: /\.css$/,
                 use: [
                     'style-loader',
                     'css-loader',

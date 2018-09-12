@@ -7,7 +7,7 @@ export default class Bug extends BasicEnemy {
         this.name = 'Bug';
         this.hp = 35;
         this.maxHp = 35;
-        this.attackPower = 2;
+        this.attackPower = 1;
         this.debuffPower= 2;
         this.spriteX = 180;
         this.xp = 5;
