@@ -4,7 +4,7 @@ const battleSystem = new BattleSystem();
 
 function initialize() {
     setConnectionStatusListeners();
-    battleSystem.startBattle();
+    setTimeout(() => battleSystem.startBattle(), 100);
 }
 
 function setConnectionStatusListeners() {
@@ -14,12 +14,11 @@ function setConnectionStatusListeners() {
 }
 
 function toggleVisibility(connected) {
-	//TODO: togliere commento in production!!!
-	// if (connected) {
-	// 	document.getElementById('online-block').style.display = 'block';
-	// } else {
-    // 	document.getElementById('online-block').style.display = 'none';
-	// }
+	if (connected) {
+		document.getElementById('online-block').style.display = 'block';
+	} else {
+    	document.getElementById('online-block').style.display = 'none';
+	}
 }
 
 initialize();
