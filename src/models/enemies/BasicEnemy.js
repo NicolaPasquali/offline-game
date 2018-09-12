@@ -21,9 +21,9 @@ export default class BasicEnemy extends VisibleEntity {
             return AttackManager.damage(this.name, player, this.attackPower);
         } else {
             if (random <= 580) {
-                return AttackManager.addStress(this.name, player, this.debuffPower);
+                AttackManager.addStress(this.name, player, this.debuffPower);
             } else {
-                return AttackManager.loseFocus(this.name, player, this.debuffPower);
+                AttackManager.loseFocus(this.name, player, this.debuffPower);
             }
         }
     }

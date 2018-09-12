@@ -16,6 +16,7 @@ export default class BattleSystem {
         this.enemySpawner = new EnemySpawner();
         this._numberOfBattle = 0;
         this._turnXp = 0;
+        this._playerDied = false;
     }
 
     startBattle() {
@@ -39,14 +40,18 @@ export default class BattleSystem {
     _loopBattle() {
         this._stepBattle()
             .then((enemiesLeft) => {
-                if (enemiesLeft > 0) {
-                    this._loopBattle();
+                if (this._playerDied && confirm('Oh no, you got fired!\nNow you have to start again from trainee...')) {
+                    location.reload();
                 } else {
-                    this._endBattleMessage();
-                    this.player.hp = this.player.maxHp;
-                    this.player.addXp(this._turnXp);
-                    this._turnXp = 0;
-                    this.startBattle();
+                    if (enemiesLeft > 0) {
+                        this._loopBattle();
+                    } else {
+                        this._endBattleMessage();
+                        this.player.hp = this.player.maxHp;
+                        this.player.addXp(this._turnXp);
+                        this._turnXp = 0;
+                        this.startBattle();
+                    }
                 }
             });
     }
@@ -56,7 +61,9 @@ export default class BattleSystem {
         return this.playerControls.awaitForAction()
             .then((selectedAction) => {
                 if (this._managePlayerAction(selectedAction)) {
-                    this.enemies.forEach((enemy) => enemy.attack(this.player));
+                    this.enemies.forEach((enemy) => {
+                        this._playerDied = enemy.attack(this.player);
+                    });
                     this._render();
                 }
                 return this.enemies.length;
