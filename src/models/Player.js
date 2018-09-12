@@ -18,7 +18,7 @@ export default class Player extends Entity {
         this.teamWork = 1;
 
         // Statuses
-        this.focus = 10000; // FIXME Riportami a 100
+        this.focus = 100;
         this.stress = 0;
     }
 

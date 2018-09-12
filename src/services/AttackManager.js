@@ -21,13 +21,13 @@ export default class AttackManager {
         switch (selectedAction) {
             case 'write-code':
             case 'debug':
-                amount = 10 + Math.round(player.programming * player.problemSolving * .10);
+                amount = 10 + Math.round(player.programming * player.problemSolving * .082);
                 return AttackManager.damage(player.name, selectedEnemy, amount);
             case 'meeting':
-                amount = 15 + Math.round(player.communication * player.teamWork * .10);
+                amount = 15 + Math.round(player.communication * player.teamWork * .078);
                 return AttackManager.damage(player.name, selectedEnemy, amount);
             case 'pair-programming':
-                amount = 20 + Math.round(player.programming * player.communication * player.teamWork * .10);
+                amount = 20 + Math.round(player.programming * player.communication * player.teamWork * .025);
                 return AttackManager.damage(player.name, selectedEnemy, amount);
             case 'meditate':
                 EventLogger.addFocus(10);
